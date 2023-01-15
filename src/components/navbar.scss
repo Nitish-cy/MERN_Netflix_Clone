@@ -1,0 +1,67 @@
+.navbar1{
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    z-index: 999;
+    background:linear-gradient(to top, tranparent 0%,rgb(0,0,0,0.3) 50%);
+    &.scrolled{
+        background-color: var(--main-color);
+    }
+    .container{
+        height: 70px;
+        padding: 2px 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .left{
+            display: flex;
+            align-items: center;
+            img{
+                height: 25px;
+                margin-right: 40px;
+            }
+            span{
+                margin-right: 40px;
+            }
+        }
+        
+        }
+        .right{
+            margin: 4px;
+            display: flex;
+            align-items: center;
+                img{
+                    height: 25px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    margin-left: 40px;
+                     }
+                span{
+                    margin-left: 40px;
+                }
+                .icon{
+                    margin-left: 40px;
+                    cursor: pointer;
+                }
+                .profile{
+                    .options{
+                        display: none;
+                        background-color: var(--main-color);
+                        border-radius: 5px;
+                    }
+                    &:hover{
+                        .options{
+                            display: flex;
+                            flex-direction: column;
+                            position: absolute;
+                        }
+                    }
+                    span{
+                        padding: 5px 0px;
+                        cursor: pointer;
+                    }
+                }
+            }
+ }
