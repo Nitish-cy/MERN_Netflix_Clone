@@ -1,11 +1,13 @@
 import React from 'react'
-import Home from './home/home';
+//import Home from './home/home';
 import "./App.scss"
+import Watch from './components/pages/watch/Watch';
 
  const App=()=> {
 
   return (
-    <Home></Home>
+    <Watch></Watch>
+    // <Home></Home>
   )
 };
 export default App;

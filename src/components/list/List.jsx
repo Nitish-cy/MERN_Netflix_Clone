@@ -5,7 +5,7 @@ import { useRef } from "react";
 import ListItem from "../listitem/ListItem";
 
 export default function List() {
-    const [isMoved, setIsMoved] = useState(false);
+  const [isMoved, setIsMoved] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
   const listRef = useRef(); //same as query selector and getelement by id
   const handleClick = (direction) => {
@@ -27,19 +27,19 @@ export default function List() {
         <AiFillCaretLeft
           className="sliderArrow left"
           onClick={() => handleClick("left")}
-          style={{display:!isMoved && "none"}}
+          style={{ display: !isMoved && "none" }}
         />
         <div className="container" ref={listRef}>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
-          <ListItem></ListItem>
+          <ListItem index={0}></ListItem>
+          <ListItem index={1}></ListItem>
+          <ListItem index={2}></ListItem>
+          <ListItem index={3}></ListItem>
+          <ListItem index={4}></ListItem>
+          <ListItem index={5}></ListItem>
+          <ListItem index={6}> </ListItem>
+          <ListItem index={7}></ListItem>
+          <ListItem index={8}></ListItem>
+          <ListItem index={9}></ListItem>
         </div>
         <AiFillCaretRight
           className="sliderArrow right"
