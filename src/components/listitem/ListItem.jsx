@@ -6,46 +6,62 @@ import {
   AiFillLike,
   AiFillDislike,
 } from "react-icons/ai";
-const ListItem = ({ index }) => {
+import { useEffect } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+const ListItem = ({ index, item }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const trailer =
-    "https://encrypted-vtbn0.gstatic.com/video?q=tbn:ANd9GcRX91AcsNK-E5XJ1am55QXRKSIIF9Tu6NmrWw";
+  const [movie, setMovie] = useState({});
+  console.log(item);
+  useEffect(() => {
+    const getMovie = async () => {
+      try {
+        const res = await axios.get("/movies/find/" + item, {
+          headers: {
+            token:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDE2ODQ2MGE2ODU5YjM4Yjk3YmE1MyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NDg5MTE4MCwiZXhwIjoxNjc1MzIzMTgwfQ.hNKJWn-NGfXqwlzHdZg-SXVlWONlKmddptTbFT5D6B4",
+
+          },
+        });
+        setMovie(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMovie();
+  }, [item]);
+  
   return (
+    <Link to={{pathname:"/watch", movies:movie}}>
     <div
       className="listIt"
       style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqXTUX9zCbUff7zPfHKb_IPlEKeD87JXppgw&usqp=CAU"
-        alt=""
-      />
+      <img src={movie.img} alt="" />
       {isHovered && (
         <>
-          <video src={trailer} autoPlay={true} loop></video>
+          <video src={movie.trailer} autoPlay={true} loop></video>
           <div className="itemInfo">
             <div className="icons">
               <AiFillCaretLeft className="icon" />
-              <AiFillPlusCircle className="icon"/>
-              <AiFillLike className="icon"/>
-              <AiFillDislike className="icon"/>
+              <AiFillPlusCircle className="icon" />
+              <AiFillLike className="icon" />
+              <AiFillDislike className="icon" />
             </div>
             <div className="itemInfoTop">
-              <span>1 hour 14 mins</span>
-              <span className="limit">+16</span>
-              <span>1999</span>
+              <span>{movie.duration}</span>
+              <span className="limit">+{item.limit}</span>
+              <span>{movie.year}</span>
             </div>
-            <div className="description">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad
-              cupiditate perferendis alias tempore in incidunt iusto, et nam
-              sunt,
-            </div>
-            <div className="genre">Action</div>
+            <div className="description">{movie.desc}</div>
+            <div className="genre">{movie.genre}</div>
           </div>
         </>
       )}
     </div>
+    </Link>
   );
 };
 
